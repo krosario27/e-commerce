@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const loading = false;
+    const loading = true;
 
     const handleSubmit = (e) => {
         e.preventDefault();
