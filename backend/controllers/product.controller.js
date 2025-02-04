@@ -49,7 +49,8 @@ export const createProduct = async (req, res) => {
         let cloudinaryResponse = null;
 
         if (image) {
-            cloudinaryResponse = await cloudinary.uploader.upload(image, {folder: "products"})
+            cloudinaryResponse = await cloudinary.uploader.upload(image, {folder: "products"});
+            console.log("Cloudinary Response", cloudinaryResponse);
         }
 
         const product = await Product.create({
@@ -124,11 +125,11 @@ export const getRecommendedProducts = async (req, res) => {
 
 export const getProductsByCategory = async (req, res) => {
 
-    const {category} = req.params;
+    const { category } = req.params;
     try {
 
-        const products = await Product.find({category});
-        res.json(products);
+        const products = await Product.find({ category });
+        res.json({ products });
 
     } catch (error){    
         console.log("Error in getProductsByCategory controller", error.message);
