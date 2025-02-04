@@ -6,7 +6,10 @@ import { useUserStore } from '../stores/useUserStores';
 const Navbar = () => {
 
     const {user, logout } = useUserStore();
+
     const isAdmin = user?.role === "admin";
+    
+
 
   return (
     

@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         {
             quantity:{
                 type:Number,
-                default:1
+                default: 1,
             },
             product:{
                 type: mongoose.Schema.Types.ObjectId,
