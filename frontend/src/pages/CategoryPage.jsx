@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useEffect } from "react";
 import { useProductStore } from "../stores/useProductStore";
 import { useParams } from "react-router-dom";
