@@ -9,6 +9,32 @@ export const useCartStore = create((set, get) => ({
 	subtotal: 0,
 	isCouponApplied: false,
 
+	getMyCoupon: async () => {
+		try {
+			const response = await axios.get("/coupons");
+			set({ coupon: response.data });
+		} catch (error) {
+			console.error("Error fetching coupon", error);	
+		}
+	},
+
+	applyCoupon: async (code) => {
+		try {
+			const response = await axios.post("/coupons/validate", { code });
+			set({ coupons: response.data, isCouponApplied: true});
+			get().calculateTotals();
+			toast.success("Coupon applied successfully");
+		} catch (error) {
+			toast.error(error.response?.data?.message || "Failed to apply coupon");
+		}
+	},
+
+	removeCoupon: async () => {
+		set({ coupon: null, isCouponApplied: false });
+		get().calculateTotals();
+		toast.success("Coupon removed successfully");
+	},
+
 	getCartItems: async () => {
 		try {
 			const res = await axios.get("/cart");
