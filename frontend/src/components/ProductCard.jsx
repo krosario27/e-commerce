@@ -3,6 +3,7 @@ import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStores";
 import { useCartStore } from "../stores/useCartStore";
 
+
 const ProductCard = ({ product }) => {
 
 	const { user } = useUserStore();
