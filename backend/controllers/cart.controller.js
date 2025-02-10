@@ -23,7 +23,6 @@ export const getCartProducts = async (req, res) => {
 
 export const addToCart = async (req, res) => {
 	try {
-        console.log("Inside try block of addToCart controller");
 		const { productId } = req.body;
 		const user = req.user;
 
@@ -33,9 +32,6 @@ export const addToCart = async (req, res) => {
 		} else {
 			user.cartItems.push(productId);
 		}
-
-        console.log("Before saving user in addToCart controller");
-
 
 		await user.save();
 		res.json(user.cartItems);
