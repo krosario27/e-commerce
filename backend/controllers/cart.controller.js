@@ -9,7 +9,7 @@ export const getCartProducts = async (req, res) => {
         // Map through the products and attach the correct quantity.
         const cartItems = products.map(product => {
             // Find the matching item in the cart.
-            const item = req.user.cartItems.find(cartItem => cartItem.id === product.id);
+            const item = req.user.cartItems.find((cartItem) => cartItem.id === product.id);
             return { ...product.toJSON(), quantity: item.quantity };
         });
         
