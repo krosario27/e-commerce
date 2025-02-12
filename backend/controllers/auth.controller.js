@@ -71,6 +71,7 @@ export const login = async (req, res) => {
 			await storeRefreshToken(user._id, refreshToken);
 			setCookies(res, accessToken, refreshToken);
 
+<<<<<<< HEAD
 			res.json({
 				_id: user._id,
 				name: user.name,
@@ -84,6 +85,21 @@ export const login = async (req, res) => {
 		console.log("Error in login controller", error.message);
 		res.status(500).json({ message: error.message });
 	}
+=======
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            })
+        } else {
+            res.status(401).json({ message: "Invalid email or password" });
+        }
+    } catch (error) {
+        console.log("Error in login controller", error.message);
+        res.status(400).json({ message: "Invalid credentials" });
+    }
+>>>>>>> parent of ff5744d (login status updated)
 };
 
 export const logout = async (req, res) => {
