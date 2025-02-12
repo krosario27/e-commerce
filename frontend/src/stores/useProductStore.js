@@ -7,7 +7,6 @@ export const useProductStore = create((set) => ({
 	loading: false,
 
 	setProducts: (products) => set({ products }),
-
 	createProduct: async (productData) => {
 		set({ loading: true });
 		try {
@@ -70,7 +69,6 @@ export const useProductStore = create((set) => ({
 			toast.error(error.response.data.error || "Failed to update product");
 		}
 	},
-
 	fetchFeaturedProducts: async () => {
 		set({ loading: true });
 		try {
@@ -78,8 +76,7 @@ export const useProductStore = create((set) => ({
 			set({ products: response.data, loading: false });
 		} catch (error) {
 			set({ error: "Failed to fetch products", loading: false });
-			console.log("Error fetching products:", error);
+			console.log("Error fetching featured products:", error);
 		}
-	}
-
+	},
 }));
