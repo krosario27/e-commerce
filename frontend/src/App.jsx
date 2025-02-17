@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom"
 import { useEffect } from "react"
+import axios from "./lib/axios"
 
 import HomePage from "./pages/HomePage"
 import SignUpPage from "./pages/SignUpPage"
@@ -17,6 +18,9 @@ import Navbar from "./components/Navbar"
 import { Toaster } from "react-hot-toast"
 import LoadingSpinner from "./components/LoadingSpinner"
 
+const url = 'https://e-commerce-4xoe.onrender.com/'
+const interval = 30000
+
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -30,6 +34,22 @@ function App() {
     if (!user) return;
     getCartItems();
   }, [getCartItems, user]);
+
+  useEffect(() => {
+    const reloadWebsite = () => {
+      axios.get(url)
+        .then(response => {
+          console.log(`Reload at ${new Date('.toISOString()')}: Status Code ${response.status}`);
+        })
+        .catch (error => {
+          console.error(`Error reloading at ${new Date().toISOString()}:`, error.message);
+        })
+    };
+
+    const intervalId = setInterval(reloadWebsite, interval);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   if (checkingAuth) return <LoadingSpinner />
 
