@@ -39,7 +39,7 @@ function App() {
     const reloadWebsite = () => {
       axios.get(url)
         .then(response => {
-          console.log(`Reload at ${new Date('.toISOString()')}: Status Code ${response.status}`);
+          console.log(`Reload at ${new Date().toISOString()}: Status Code ${response.status}`);
         })
         .catch (error => {
           console.error(`Error reloading at ${new Date().toISOString()}:`, error.message);
