@@ -76,9 +76,9 @@ export const deleteProduct = async (req, res) => {
 			const publicId = product.image.split("/").pop().split(".")[0];
 			try {
 				await cloudinary.uploader.destroy(`products/${publicId}`);
-				console.log("deleted image from cloduinary");
+				
 			} catch (error) {
-				console.log("error deleting image from cloduinary", error);
+				console.log("error deleting image from cloudinary", error);
 			}
 		}
 
